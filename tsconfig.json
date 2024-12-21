@@ -12,7 +12,7 @@
     "baseUrl": "./",
     "paths": {
       "@dashboard/*": ["src/apps/dashboard/*"],
-      "@mobile/*": ["src/apps/mobile/*"],
+      "@shop/*": ["src/apps/shop/*"],
       "@shared/*": ["src/shared/*"]
     },
     "incremental": true,
