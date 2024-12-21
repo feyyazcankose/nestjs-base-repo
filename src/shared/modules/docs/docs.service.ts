@@ -48,7 +48,7 @@ export class DocService {
     templateName = 'doc.hbs',
   ): HandlebarsTemplateDelegate<any> {
     const templateFile = fs.readFileSync(
-      join(process.cwd(), 'src', 'views', templateName),
+      join(process.cwd(), 'src/shared/views', templateName),
       'utf8',
     );
     return Handlebars.compile(templateFile);

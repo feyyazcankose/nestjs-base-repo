@@ -7,7 +7,7 @@ import { DocModule } from '@shared/modules/docs/docs.module';
 @Module({
   imports: [
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '/src/public'),
+      rootPath: join(__dirname, '/src/shared/public'),
       serveRoot: '/public',
     }),
     DashboardModule,

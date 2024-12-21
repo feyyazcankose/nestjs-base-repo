@@ -11,8 +11,8 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "paths": {
-      "@dashboard/*": ["src/apps/dashboard/*"],
-      "@shop/*": ["src/apps/shop/*"],
+      "@dashboard/*": ["src/dashboard/*"],
+      "@shop/*": ["src/*"],
       "@shared/*": ["src/shared/*"]
     },
     "incremental": true,

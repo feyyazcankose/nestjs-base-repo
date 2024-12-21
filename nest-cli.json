@@ -6,12 +6,12 @@
     "deleteOutDir": true,
     "assets": [
       {
-        "include": "/views",
+        "include": "/shared/views",
         "outDir": "dist/src/",
         "watchAssets": true
       },
       {
-        "include": "/public/**/*",
+        "include": "/shared/public/**/*",
         "outDir": "dist/src/",
         "watchAssets": true
       }
