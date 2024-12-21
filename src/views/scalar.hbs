@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='utf-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
+  <title>{{{title}}}</title>
+  <link rel='icon' type='image/png' href='/public/docs/favicon.png' />
+  <link rel='stylesheet' href='/public/docs/scalar/scalar.css' />
+  <style>
+    /* Loader'ın sayfa yüklenmeden görünmesi için gerekli stiller */
+    #loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000e23;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    #loader .spinner {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #000e23;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body style='height: 100vh'>
+  <!-- Loader -->
+  <div id='loader'>
+    <div class='spinner'></div>
+  </div>
+
+  <header class='custom-header scalar-app'>
+    <a href="{{ currentPath }}"><img src="/public/docs/favicon.png" width="20" /></a>
+    <div class='menu-toggle' onclick='toggleMenu()'>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3.5v17M3 9.4c0-2.24 0-3.36.436-4.216a4 4 0 0 1 1.748-1.748C6.04 3 7.16 3 9.4 3h5.2c2.24 0 3.36 0 4.216.436a4 4 0 0 1 1.748 1.748C21 6.04 21 7.16 21 9.4v5.2c0 2.24 0 3.36-.436 4.216a4 4 0 0 1-1.748 1.748C17.96 21 16.84 21 14.6 21H9.4c-2.24 0-3.36 0-4.216-.436a4 4 0 0 1-1.748-1.748C3 17.96 3 16.84 3 14.6z"/></svg>
+       </div>
+    <nav>
+      {{#each menuItems}}
+      <a href='{{this.link}}' target='{{this.target}}' class='navbar__link {{#if this.active}}active{{/if}}'>
+        <span>{{this.label}}</span>
+      </a>
+      {{/each}}
+    </nav>
+  </header>
+
+  <!-- API Referansı için bir element -->
+  <div id='api-reference'></div>
+
+  <script>
+    // Loader hemen açılır, 2 saniye sonra kapanır
+    window.onload = function () {
+      var loader = document.getElementById('loader');
+      setTimeout(function () {
+        loader.style.display = 'none';
+      }, 2000); // 2 saniye bekleme süresi
+    };
+
+    var openApiSpec = {{{ jsonData }}};
+
+    var apiReference = document.getElementById('api-reference');
+
+    apiReference.dataset.spec = JSON.stringify(openApiSpec);
+    apiReference.dataset.configuration = JSON.stringify({ theme: 'bluePlanet' });
+
+    // Menü toggle işlevi
+    function toggleMenu() {
+      var nav = document.querySelector('.custom-header nav');
+      nav.classList.toggle('active');
+    }
+  </script>
+
+  <!-- Scalar API Reference kütüphanesi -->
+  <script src='/public/docs/scalar/scalar.min.js'></script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<html lang='en'>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta
+      name='viewport'
+      content='width=device-width, initial-scale=1, shrink-to-fit=no'
+    />
+    <title>{{{title}}}</title>
+    <link rel='icon' type='image/png' href='/public/docs/favicon.png' />
+    <link rel='stylesheet' href='/public/docs/stoplight.min.css' />
+    <link rel='stylesheet' href='/public/docs/header.css' />
+
+  </head>
+
+  <body style='height: 100vh'>
+    <div id='loader' class='loader'></div>
+    <div id='jsonViewer'></div>
+    <div class='root'>
+      <!-- Navbar -->
+      {{#if menuItems.length}}
+        <nav class='navbar'>
+          <ul class='navbar__menu'>
+            {{#each menuItems}}
+              <li class='navbar__item' data-key='{{this.key}}'>
+                <a
+                  href='{{this.link}}'
+                  target='{{this.target}}'
+                  class='navbar__link'
+                >
+                  {{{this.icon}}}
+                  <!-- SVG simgeyi saf HTML olarak yerleştiriyoruz -->
+                  <span>{{this.label}}</span>
+                </a>
+              </li>
+            {{/each}}
+          </ul>
+        </nav>
+        <main id='main' class='flexbox-col'>
+          <div
+            id='docContainer'
+            style='height: 100vh !important; display: none'
+          ></div>
+
+        </main>
+      {{else}}
+        <div
+          id='docContainer'
+          style='height: 100vh !important; display: none'
+        ></div>
+      {{/if}}
+    </div>
+
+    <script src='/public/docs/jquery.min.js'></script>
+    <script src='/public/docs/script.js'></script>
+
+    <script>
+      const data ={{{jsonData}}}; setup(data);
+
+    </script>
+  </body>
+
+</html>

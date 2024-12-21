@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { User } from '@prisma/client';
 import { IsEmail, IsOptional } from 'class-validator';
 
 export class UserBaseDto {
@@ -14,9 +15,24 @@ export class UserBaseDto {
   password: string;
 }
 
-export class UserDto extends UserBaseDto {
+export class UserDto {
+  constructor(partial: Partial<User>) {
+    this.id = partial.id;
+    this.name = partial.name;
+    this.email = partial.email;
+    this.created_at = partial.createdAt;
+  }
+
   @ApiProperty({ example: 1 })
-  id: number;
+  id: string;
+
+  @ApiProperty({ example: 'John', required: false })
+  @IsOptional()
+  name?: string;
+
+  @ApiProperty({ example: 'john.doe@example.com' })
+  @IsEmail()
+  email: string;
 
   @ApiProperty({ example: new Date() })
   created_at: Date;
