@@ -1,12 +1,13 @@
 import { Injectable, Inject, NotFoundException } from '@nestjs/common';
 import { IUserService } from '@dashboard/business/interfaces/user.service.interface';
-import { IUserRepository } from '@dashboard/data/interfaces/user.repository.interface';
 import { User } from '@prisma/client';
+import { IBaseRepository } from '@shared/base/interfaces/base.repository.interface';
 
 @Injectable()
 export class UserService implements IUserService {
   constructor(
-    @Inject('IUserRepository') private readonly userRepository: IUserRepository,
+    @Inject('IUserRepository')
+    private readonly userRepository: IBaseRepository<User>,
   ) {}
 
   async getUserById(id: string): Promise<User | null> {
