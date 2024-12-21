@@ -26,6 +26,8 @@
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
     "@prisma/client": "^6.1.0",
+    "ioredis": "^5.4.2",
+    "nestjs-minio": "^2.6.2",
     "prisma": "^6.1.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0"
