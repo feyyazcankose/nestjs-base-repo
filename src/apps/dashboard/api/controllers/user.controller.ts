@@ -1,6 +1,7 @@
 import { Get, Post, Param, Body, Inject } from '@nestjs/common';
 import { IUserService } from '@dashboard/business/interfaces/user.service.interface';
 import { DashboardController } from '@shared/decorators/prefix.controller.decorator';
+import { UserBaseDto } from '@dashboard/shared/dtos/user.dto';
 
 @DashboardController('users')
 export class UserController {
@@ -19,7 +20,7 @@ export class UserController {
   }
 
   @Post()
-  async createUser(@Body() userData: any) {
+  async createUser(@Body() userData: UserBaseDto) {
     return this.userService.createUser(userData);
   }
 }
